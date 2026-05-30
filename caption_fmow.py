@@ -28,17 +28,7 @@ Multi-GPU (no NCCL)
 -------------------
     Launch one process per GPU and shard the work deterministically:
 
-        # GPU 0 of N
-        CUDA_VISIBLE_DEVICES=0 python caption_fmow.py \
-            --fmow_root /mnt/nas/rishabh_sat/fmow-full/train \
-            --output_dir /mnt/nas/diffsat_project/fmow_captions \
-            --shard_id 0 --num_shards 4
-
-        # GPU 1 of N (on the same or another machine)
-        CUDA_VISIBLE_DEVICES=1 python caption_fmow.py \
-            --fmow_root /mnt/nas/rishabh_sat/fmow-full/train \
-            --output_dir /mnt/nas/diffsat_project/fmow_captions \
-            --shard_id 1 --num_shards 4
+       
 
     Sharding is by sample index (deterministic sort), so processes never
     touch the same file. All four can run concurrently and resume
